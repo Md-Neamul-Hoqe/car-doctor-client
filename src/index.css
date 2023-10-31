@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+li > a.active,
+li:hover > a {
+  @apply text-logo-red bg-transparent border-0 !important;
+}
+
+.btn {
+  @apply capitalize;
+}
+
+body {
+  @apply text-base text-body;
+}
+
+.trapezium {
+  @apply absolute bottom-0 transform -translate-x-1/2 left-1/2 h-0 w-[400px] border-b-logo-red border-l-transparent border-r-transparent border-l-[80px] border-r-[80px] border-solid border-b-[50px];
+}
+
+/* Team slider */
+.navigation-wrapper {
+  position: relative;
+}
+
+.arrow {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  /* fill: #fff; */
+  /* cursor: pointer; */
+  @apply btn btn-circle border-0 hover:bg-logo-red cursor-pointer hover:fill-white p-3;
+  /* @apply  text-heading hover:text-white bg-opacity-50 hover:bg-logo-red; */
+}
+
+.arrow--left {
+  left: 5px;
+}
+
+.arrow--right {
+  left: auto;
+  right: 5px;
+}
+
+.arrow--disabled {
+  fill: rgba(255, 255, 255, 0.5);
+}
