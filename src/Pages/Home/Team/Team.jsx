@@ -56,13 +56,16 @@ const Team = () => {
     slideChanged(slider) {
       setCurrentSlide(slider.track.details.rel);
     },
+
     created(s) {
       setLoaded(true);
       s.moveToIdx(6, true, animation);
     },
+
     updated(s) {
       s.moveToIdx(s.track.details.abs + 3, true, animation);
     },
+
     animationEnded(s) {
       s.moveToIdx(s.track.details.abs + 3, true, animation);
     },
@@ -136,7 +139,7 @@ const Team = () => {
 };
 
 function Arrow(props) {
-  console.log(props);
+  // console.log(props);
   // eslint-disable-next-line react/prop-types
   const disabled = props?.disabled ? " arrow--disabled" : "";
 

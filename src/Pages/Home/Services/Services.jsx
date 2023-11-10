@@ -1,20 +1,17 @@
-import { useEffect, useState } from "react";
 import SectionHeader from "../SectionHeader/SectionHeader";
 import Service from "./Service";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import useServices from "../../../hooks/useServices";
+import { useState } from "react";
+// import axios from "axios";
 
 const Services = () => {
-  const [services, setServices] = useState([]);
+  const [asc, setAsc] = useState(true);
+  const [search, setSearch] = useState("");
 
-  useEffect(() => {
-    axios.get("http://localhost:5000/services").then((res) => {
-      setServices(res.data);
-    });
-    // fetch("http://localhost:5000/services")
-    //   .then((res) => res.json())
-    //   .then((data) => setServices(data));
-  }, []);
+  const services = useServices(asc, search);
+
+  console.log(asc);
 
   const headerSection = {
     smallHeading: "Service",
@@ -23,10 +20,29 @@ const Services = () => {
       "the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.",
     ],
   };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+
+    setSearch(e.target?.search?.value);
+  };
   return (
     <section>
       <aside className="text-center">
         <SectionHeader headerSection={headerSection} />
+        <form onSubmit={handleSearch}>
+          <input type="search" name="search" className="input input-bordered" />
+          <input
+            type="submit"
+            value="Search"
+            className="btn bg-logo-red text-white"
+          />
+        </form>
+        <button
+          onClick={() => setAsc(!asc)}
+          className="btn bg-logo-red text-white hover:bg-logo-red/70 mt-4">
+          Price: {asc ? "High to low" : "Low to high"}
+        </button>
       </aside>
 
       <aside className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-12">
